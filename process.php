@@ -56,22 +56,28 @@
     }
     $regid = filter_input(INPUT_POST,'updated_id', FILTER_VALIDATE_INT);
     if ($regid !== false && $regid > 0){
+        $sql = "UPDATE registrations SET
+        first_name = :first_name,
+        last_name = :last_name,
+        email = :email,
+        phone = :phone
+        WHERE id = :id";
+        $stmt = $pdo->prepare($sql);//prepare query
+        //execute
+        $stmt ->execute([':first_name' => $firstName, ':last_name' => $lastName, ':email' => $email, ':phone' => $phone, ':id' => $regid]);
+            
+        echo'Entry successfully updated';
+        echo'<a href="admin.php">View Data</a>';
+    }
+    else{
         $sql = "INSERT INTO registrations(first_name,last_name,email,phone) 
-                            VALUES(:first_name,:last_name,:email,:phone)";
+                                VALUES(:first_name,:last_name,:email,:phone)";
         $stmt = $pdo->prepare($sql);//prepare query
         //execute
         $stmt ->execute([':first_name' => $firstName, ':last_name' => $lastName, ':email' => $email, ':phone' => $phone]);
-    
-    echo'Entry successfully updated';
-    }
-    else{
-    $sql = "INSERT INTO registrations(first_name,last_name,email,phone) 
-                            VALUES(:first_name,:last_name,:email,:phone)";
-    $stmt = $pdo->prepare($sql);//prepare query
-    //execute
-    $stmt ->execute([':first_name' => $firstName, ':last_name' => $lastName, ':email' => $email, ':phone' => $phone]);
-    
-    echo'Data successfully uploaded';
+            
+        echo'Data successfully uploaded';
+        echo'<a href="admin.php">View Data</a>';
     }
     
 ?>

@@ -7,10 +7,10 @@
     Allows the admin to update and delete records as needed*/
     require 'includes/connect.php';
 
-    $sql = "SELECT * FROM registrations";
-    $stmt = $pdo->prepare($sql);
+    $sql = "SELECT * FROM registrations";//select all data from registrations table
+    $stmt = $pdo->prepare($sql);//prepare statement
     $stmt->execute();//bind the id, execute query
-    $entries = $stmt->fetchAll();
+    $entries = $stmt->fetchAll();//fetch all data from reg table
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +23,9 @@
     <h1>Admin Page</h1>
 
     <form action="process.php" method="POST">
-        <?php foreach($entries as $e=> $entry): ?>
+        <?php foreach($entries as $e=> $entry): ?><!--for every row of data in the reg table, display data-->
             <tr>
-              <td><?= htmlspecialchars($entry['id']); ?></td>
+              <td><?= htmlspecialchars($entry['id']); ?></td><!--display id, first_name, etc-->
               <td>
                 <?= htmlspecialchars($entry['first_name']); ?>
                 <?= htmlspecialchars($entry['last_name']); ?>
@@ -35,11 +35,12 @@
               <td><?= htmlspecialchars($entry['created_at']); ?></td>
 
               <td>
-                <a href="update.php?id=<?= urlencode($order['id']); ?>"
-                > Update </a>
+                <a href="update.php?id=<?= urlencode($entry['id']); ?>"
+                > Update </a><!--append id to update page link-->
               </td>
             </tr>
-            <a href="delete.php?id=<?= urlencode($entry['id']); ?>">Delete</a>
+            <a href="delete.php?id=<?= urlencode($entry['id']); ?>">Delete</a><!--append id to delete page link-->
+            <br>
         <?php endforeach; ?>
     </form>
 
