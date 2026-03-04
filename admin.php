@@ -25,7 +25,7 @@
     <form action="process.php" method="POST">
         <?php foreach($entries as $e=> $entry): ?><!--for every row of data in the reg table, display data-->
             <tr>
-              <td><?= htmlspecialchars($entry['id']); ?></td><!--display id, first_name, etc-->
+              <td><?= htmlspecialchars($entry['id']); ?></td><!--display id, first_name, etc in a not so tidy string (ideally with more time I'd make this look presentable)-->
               <td>
                 <?= htmlspecialchars($entry['first_name']); ?>
                 <?= htmlspecialchars($entry['last_name']); ?>
@@ -35,8 +35,7 @@
               <td><?= htmlspecialchars($entry['created_at']); ?></td>
 
               <td>
-                <a href="update.php?id=<?= urlencode($entry['id']); ?>"
-                > Update </a><!--append id to update page link-->
+                <a href="update.php?id=<?= urlencode($entry['id']); ?>"> Update </a><!--append id to update page link-->
               </td>
             </tr>
             <a href="delete.php?id=<?= urlencode($entry['id']); ?>">Delete</a><!--append id to delete page link-->

@@ -1,6 +1,6 @@
 <?php 
     require 'includes/connect.php'; 
-    if (!isset($_GET['id'])) {
+    if (!isset($_GET['id'])) {//kill and print message if no ID
             die("No id provided.");
         }
     $regid =(int) $_GET['id'];//get url appended id and assign to variable

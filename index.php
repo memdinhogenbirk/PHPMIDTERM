@@ -11,16 +11,16 @@
     <form action="process.php" method="POST">
 
         <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name"><br><br>
+        <input type="text" id="first_name" name="first_name" required><br><br><!--clientside avoiding empty entries-->
 
         <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name"><br><br>
+        <input type="text" id="last_name" name="last_name" required><br><br>
 
         <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br><br>
+        <input type="text" id="email" name="email" required><br><br>
 
         <label for="phone">Phone:</label><br>
-        <input type="text" id="phone" name="phone"><br><br>
+        <input type="text" id="phone" name="phone" required placeholder="888-888-8888" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"><br><br><!--clientside regex for good measure-->
 
         <button type="submit">Register</button>
 
